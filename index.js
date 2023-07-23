@@ -215,6 +215,39 @@ function Sort() {
 }
 // console.log(Sort());
 
+function sortArray(arr, N)
+{
+ 
+    // Traverse the array
+    for (var i = 0; i < N;) {
+ 
+        // If the current element is
+        // at correct position
+        if (arr[i] == i + 1) {
+            i++;
+        }
+ 
+        // Else swap the current element
+        // with it's correct position
+        else {
+            var temp1 = arr[i];
+           var temp2 = arr[arr[i] - 1];
+           arr[i] = temp2;
+           arr[temp1 - 1] = temp1;
+        }
+    }
+}
+ 
+// Driver Code
+var arr =  [ 2, 1, 5, 3, 4 ];
+var N = arr.length;
+ 
+// Function call to sort the array
+sortArray(arr, N);
+ 
+// Function call to print the array
+printArray(arr, N);
+
 function palindrome(str) {
   let length = Math.floor(str.length / 2);
   console.log("length", length);
