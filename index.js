@@ -35,25 +35,24 @@ function starPatterJs(number) {
     for (let k = 0; k <= i * 2; k++) {
       str += "*";
     }
-    // for (let k = 0; k < i; k++) {
-    //   str += "*";
-    // }
-    // for (let l = 1; l < i; l++) {
-    //   str += "*";
-    // }
     console.log(str);
+    // for (let k = 0; k < i; k++) {
+    //   //   str += "*";
+    //   // }
+    //   // for (let l = 1; l < i; l++) {
+    //   //   str += "*";
+    //   // }
+    //   console.log(str);
+    // }
   }
 }
 function reverseStarJs(number) {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 3; i > 0; i--) {
     let str = "";
-    for (let j = i; j > 0; j--) {
+    for (let k = 0; k < i; k++) {
       str += " ";
     }
-    for (let k = i; k < 5; k++) {
-      str += "*";
-    }
-    for (let k = i; k < 5; k++) {
+    for (let k = 5; k <= 2 * 2; k--) {
       str += "*";
     }
     console.log(str);
@@ -145,7 +144,7 @@ function lookUp() {
   };
   console.log(findSumPairs(arr, 6));
 }
-lookUp();
+// lookUp();
 
 function Sorting() {
   let arr = [1, -1, 0, 8, -4, 2, 6, 10];
@@ -161,7 +160,30 @@ function Sorting() {
   return arr;
 }
 
-// console.log("sorting", Sorting());
+function SmartSorting() {
+  // let arr = [1, -1, 0, 8, -4, 2, 6, 10, -2];
+  let arr = [9, 9, -4, 1, -3, 2, 3, 2, 4, 6, 7, 4, 5, 8, 8];
+  let max = arr[0];
+  let min = arr[0];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > arr[i + 1]) {
+      let temp = arr[i];
+      arr[i] = arr[i + 1];
+      arr[i + 1] = temp;
+      i = -1;
+    }
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+  }
+  console.log("max min", max, min);
+  return arr;
+}
+
+// console.log("sorting", SmartSorting());
 
 function QuickSort() {
   let arr = [10, 5, 8, 12, 15, 6, 3, 9, 16, 27];
@@ -215,38 +237,36 @@ function Sort() {
 }
 // console.log(Sort());
 
-function sortArray(arr, N)
-{
- 
-    // Traverse the array
-    for (var i = 0; i < N;) {
- 
-        // If the current element is
-        // at correct position
-        if (arr[i] == i + 1) {
-            i++;
-        }
- 
-        // Else swap the current element
-        // with it's correct position
-        else {
-            var temp1 = arr[i];
-           var temp2 = arr[arr[i] - 1];
-           arr[i] = temp2;
-           arr[temp1 - 1] = temp1;
-        }
+function sortArray(arr, N) {
+  // Traverse the array
+  for (var i = 0; i < N; ) {
+    // If the current element is
+    // at correct position
+    if (arr[i] == i + 1) {
+      i++;
     }
+
+    // Else swap the current element
+    // with it's correct position
+    else {
+      var temp1 = arr[i];
+      var temp2 = arr[arr[i] - 1];
+      arr[i] = temp2;
+      arr[temp1 - 1] = temp1;
+    }
+  }
+  console.log("arrrr", arr);
 }
- 
-// Driver Code
-var arr =  [ 2, 1, 5, 3, 4 ];
-var N = arr.length;
- 
+
+// // Driver Code
+// var arr = [2, -1, 5, 3, 7];
+// var N = arr.length;
+
 // Function call to sort the array
-sortArray(arr, N);
- 
-// Function call to print the array
-printArray(arr, N);
+// sortArray(arr, N);
+
+// // Function call to print the array
+// printArray(arr, N);
 
 function palindrome(str) {
   let length = Math.floor(str.length / 2);
@@ -261,65 +281,165 @@ function palindrome(str) {
 
 // console.log("palindrome", palindrome("civic"));
 
+// function removeduplicateValues(array) {
+//   const result = [];
+//   for (var key in array) {
+//     let exists = false;
+//     for (var key1 in result) {
+//       if (array[key] == result[key1]) {
+//         exists = true;
+//         break;
+//       }
+//     }
+//     if (!exists) {
+//       result.push(array[key]);
+//     }
+//   }
+//   return result;
+// }
+
+// function removeduplicateValues(array) {
+//   let element = [...new Set(array)];
+//   console.log("eeee", element);
+//   let obj = {};
+//   for (let i = 0; i < array.length; i++) {
+//     if (obj[array[i]]) {
+//     } else {
+//       obj[array[i]] = array[i];
+//     }
+//   }
+//   console.log("aaaaaa", Object.keys(obj));
+// }
+
 function removeduplicateValues(array) {
-  const result = [];
-  for (var key in array) {
-    let exists = false;
-    for (var key1 in result) {
-      if (array[key] == result[key1]) {
-        exists = true;
-        break;
-      }
-    }
-    if (!exists) {
-      result.push(array[key]);
+  let obj = {};
+  for (let i = 0; i < array.length; i++) {
+    if (!obj[array[i]]) {
+      obj[array[i]] = array[i];
+    } else {
+      console.log("aaa1", array, array[i]);
+      array.splice(i, 1);
+      console.log("aaa2", array, i);
+      i -= 1;
     }
   }
-  return result;
+  console.log("looked", array);
+}
+
+function removeduplicateValuesSmartly(array) {
+  let obj = {};
+  for (let i = 0; i < array.length; i++) {
+    // if (!obj[array[i]]) {
+    //   obj[array[i]] = array[i];
+    // } else {
+    //   console.log("aaa1", array, array[i]);
+    //   array.splice(i, 1);
+    //   console.log("aaa2", array, i);
+    //   i -= 1;
+    // }
+    if (!obj[array[i]]) {
+      obj[array[i]] = array[i];
+    }
+    if (array[i] > array[i + 1]) {
+      let temp = array[i];
+      array[i] = array[i + 1];
+      array[i + 1] = temp;
+      i = -1;
+    }
+  }
+  console.log("looked", array, "obj", Object.keys(obj));
 }
 
 // console.log(
 //   "removeDuplicateValues",
-//   removeduplicateValues([1, 2, 3, 2, 4, 6, 7, 4, 5, 8, 8])
+//   removeduplicateValues([9, 9, -4, 1, -3, 2, 3, 2, 4, 6, 7, 4, 5, 8, 8])
 // );
-function print2Smallest( arr, arr_size)
-{
-    let i, first, second;
 
-    /* There should be atleast two elements */
-    if (arr_size < 2)
-    {
-        document.write(" Invalid Input ");
-        return;
+console.log(
+  "removeDuplicateValues",
+  removeduplicateValuesSmartly([9, 9, -4, 1, -3, 2, 3, 2, 4, 6, 7, 4, 5, 8, 8])
+);
+
+// function print2Smallest(arr, arr_size) {
+//   let i, first, second;
+
+//   first = arr[0];
+//   second = arr[0];
+//   for (i = 1; i < arr_size; i++) {
+//     if (arr[i] < first) {
+//       first = arr[i];
+//     }
+//     if (arr[i] > first && arr[i] < second) {
+//       second = arr[i];
+//     }
+//   }
+//   console.log(first, second);
+// }
+
+// // Driver program
+
+// let arr = [12, 13, 1, 10, 34, 1];
+// let n = arr.length;
+// print2Smallest(arr, n);
+
+function mergedTwoArraysAndSort(arr1, arr2) {
+  let arr = [...arr1, ...arr2];
+  for (let k = 0; k < arr.length; k++) {
+    if (!obj[arr[k]]) {
+      obj[arr[k]] = arr[k];
+    } else {
     }
-
-    first=Number.MAX_VALUE ;
-    second=Number.MAX_VALUE ;
-    for (i = 0; i < arr_size ; i ++)
-    {
-        /* If current element is smaller than first
-        then update both first and second */
-        if (arr[i] < first)
-        {
-            second = first;
-            first = arr[i];
-        }
-
-        /* If arr[i] is in between first and second
-        then update second */
-        else if (arr[i] < second && arr[i] != first)
-            second = arr[i];
-    }
-    if (second == Number.MAX_VALUE )
-        document.write("There is no second smallest element\n");
-    else
-        document.write("The smallest element is " + first + " and second "+
-            "Smallest element is " + second +'\n');
+  }
 }
+let arr1 = [1, 3, 4, 5, 5];
+let arr2 = [2, 4, 4, 6, 8];
+mergedTwoArraysAndSort(arr1, arr2);
 
 
-    // Driver program
+//coditlit
+// you can write to stdout for debugging purposes, e.g.
+// console.log('this is a debug message');
 
-    // let arr = [ 12, 13, 1, 10, 34, 1 ];
-    // let n = arr.length;
-    // print2Smallest(arr, n);
+// A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.
+
+// For example, number 9 has binary representation 1001 and contains a binary gap of length 2. The number 529 has binary representation 1000010001 and contains two binary gaps: one of length 4 and one of length 3. The number 20 has binary representation 10100 and contains one binary gap of length 1. The number 15 has binary representation 1111 and has no binary gaps. The number 32 has binary representation 100000 and has no binary gaps.
+
+function solution(N) {
+  // console.log("Number", N)
+  let array = []
+  while (N >= 1) {
+      array.push(Math.floor(N % 2))
+      N = N / 2
+  }
+  array = array.reverse()
+  let count = 0
+  let max = 0
+  let check = false
+  // console.log("view value", array)
+  for (let i = 0; i < array.length; i++) {
+      // console.log("array[i]", array[i])
+
+      //run first time 001
+      if (array[i] == 1 && !check) {
+          check = true
+      }
+
+      //start counting 00100
+      if (array[i] == 0 && check) {
+          count += 1
+          // console.log("array[i] counter", array[i], count)
+      }
+
+      //max count 001001
+      if (array[i] == 1 && check) {
+          if (max < count) {
+              max = count
+              count = 0
+          }
+          // console.log("array[i] max counter", array[i], count, max)
+      }
+  }
+  // console.log(max)
+  // console.log("ssss,arr", array, max, count)
+  return max
+}
